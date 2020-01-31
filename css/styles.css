@@ -372,6 +372,7 @@ a.btn-social,
 
 .code-block{
   margin-top: 40px;
+  margin-bottom: 40px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
   border-radius: 12px;
 }
@@ -397,7 +398,7 @@ a.btn-social,
   justify-content: flex-start;
 }
 
-#start{
+.start{
   color: #007bff;
 }
 
@@ -421,4 +422,16 @@ a.btn-social,
 		width: 35px;
 		height: 35px;
 	}
+}
+
+@media screen and (max-width: 440px)
+{
+	.logo-h2{
+		font-size: 1rem;
+	}
+
+  .toggler-div{
+    zoom: 80%;
+    left: 0;
+  }
 }

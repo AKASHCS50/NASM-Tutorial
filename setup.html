@@ -63,11 +63,11 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#">Introduction</a>
-                </li>
                 <li>
-                    <a href="setup.html">Setup</a>
+                    <a href="index.html">Introduction</a>
+                </li>
+                <li class="active">
+                    <a href="#">Setup</a>
                 </li>
                 <li>
                     <a href="basic.html" data-toggle="collapse" aria-expanded="false" data-target="#basics" class="dropdown-toggle">Basics</a>
@@ -122,38 +122,17 @@
 
             <div class="container content">
 
-                <div class="content-div">
-                    <strong>The Netwide Assembler (NASM)</strong> is an assembler and disassembler for the Intel x86 architecture. It can
-                    be used to write
-                    16-bit, 32-bit (IA-32) and 64-bit (x86-64) assembly programs. NASM is considered to be one of the
-                    most popular assemblers for
-                    Linux.<br />
-                    NASM was originally written by Simon Tatham with assistance from Julian Hall.<br />
-
-                    It is open-source software released under the terms of a simplified (2-clause) BSD license.
-                </div>
-                <div class="content-div">
-                    There are many assembler programs, available such as −
-                    <br/>
-                    <ul>
-                    <strong>
-                    <li>Microsoft Assembler (MASM)</li>
-                    <li>Borland Turbo Assembler (TASM)</li>
-                    <li>The GNU assembler (GAS)</li></strong>
-                    </ul>
-                    In this tutorial we will be using Netwide Assembler(NASM).<br/><br/><br/>
-                    <h4>Advantages of NASM assembler-</h4> <br/>
-                     <ul>
-                         <li>Free and Open Source</li>
-                         <li>Well documented. Official webiste : <a href="https://www.nasm.us/">https://www.nasm.us/</a>
-                         </li>
-                         <li>Works on both Windows and Linux</li>
-                     </ul>
-                </div>
-                <div class="content-div">
-                    To find bit extension of your Linux x86 architecture, Type the following code snippet in your
-                    terminal
-
+                   <div class="content-div">
+                       <strong>Assembly language</strong> interacts directly with machine, hence the NASM assembler software changes with the bit configuration of 
+                       Linux machine.
+                       <br/>
+                       In this tutorial we will be focussing on <strong>32-bit Intel x86</strong> processor.
+                   </div>
+                    <div class="content-div">
+                        <h4>Checking if NASM already exists on your system-</h4>
+                        Type the following code in terminal
+                   
+                    
                     <div class="code-block">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item">
@@ -169,7 +148,7 @@
                             <div class="tab-pane fade show active" id="pills-11" role="tabpanel"
                                 aria-labelledby="pills-home-tab">
                                 <pre><code>
-                                    <span><span class="start">&gt;&gt;</span> uname -a</span>
+                                    <span><span class="start">&gt;&gt;</span> whereis nasm</span>
                                 </code></pre>
                             </div>
                             <div class="tab-pane fade" id="pills-12" role="tabpanel"
@@ -177,10 +156,28 @@
                             </div>
                         </div>
                     </div>
+                    If the output shows - <span class="start"><code><strong><i>  nasm: /usr/bin/nasm  </i></strong></code></span> then you are good to go. 👍
                     <br/><br/>
-                    Now let us begin <a href="setup.html">setting up</a> the environment for NASM.
-                </div>
-
+                    Else if you see the following output - <span class="start"><code><strong><i>  nasm:  </strong></i></code></span> then you need to follow the below steps to setup NASM.
+            </div>
+            <div class="content-div">
+            <h4>Steps to setup NASM environment -</h4>
+            <ul>
+                <li>Open the official NASM website <a href="https://www.nasm.us/">https://www.nasm.us/</a> </li>
+                <li>Click on <strong class="start">STABLE</strong> latest released version</li>
+                <li>Download the Linux source archive <span class="start">nasm-X.XX.tar.gz</span>, where X.XX is the NASM version number in the archive.</li>
+                <li>Unzip the downloaded <span class="start">tar.gz</span> file at suitable location and open terminal in the newly created NASM folder</li>
+                <li>Type the following command in termianal 
+                    <span class="start">&nbsp;  &gt;&gt;</span><span class="start"><code><strong><i> ./configure </i></strong></code></span></li>
+                    This shell script will find the best C compiler to use and set up Makefiles accordingly.
+                <li>Type<span class="start">&nbsp;  &gt;&gt;</span><span class="start"><code><strong><i> make </i></strong></code></span> to build the nasm and ndisasm binaries.</li>
+                <li>Type<span class="start">&nbsp;  &gt;&gt;</span><span class="start"><code><strong><i> make install </i></strong></code></span> to install nasm and ndisasm in /usr/local/bin and to install the man pages.</li>
+                </ul>
+            </div>
+             <div class="content-div">
+                 Now you are all set to <a href="basic.html">start learning</a> basics of NASM.
+             </div>
+         </div>
         </main>
     </div>
     <!-- Content Part ends -->

@@ -193,6 +193,14 @@ a[data-toggle="collapse"] {
 #sidebar .sidebar-header {
     padding: 20px;
     background: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sidebar-header img{
+	width: 80px;
+	height: 80px;
 }
 
 #sidebar ul.components {
@@ -220,7 +228,7 @@ a[data-toggle="collapse"] {
 	display: flex;
 	width: 100%;
 	align-items: center;
-	margin-top: 10vh;
+	margin-top: 5vh;
 }
 
 ul ul a {

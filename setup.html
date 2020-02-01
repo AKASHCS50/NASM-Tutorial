@@ -70,16 +70,17 @@
                     <a href="#">Setup</a>
                 </li>
                 <li>
-                    <a href="basic.html" data-toggle="collapse" aria-expanded="false" data-target="#basics" class="dropdown-toggle">Basics</a>
+                    <a href="basic.html" data-toggle="collapse" aria-expanded="false" data-target="#basics"
+                        class="dropdown-toggle">Basics</a>
                     <ul class="collapse list-unstyled" id="basics">
                         <li>
-                            <a href="basic.html">Home 1</a>
+                            <a href="basic/assembly.html">Assembly Language</a>
                         </li>
                         <li>
-                            <a href="basic.html">Home 2</a>
+                            <a href="basic/register.html">Registers</a>
                         </li>
                         <li>
-                            <a href="basic.html">Home 3</a>
+                            <a href="basic/syntax.html">Basic Syntax</a>
                         </li>
                     </ul>
                 </li>
@@ -122,17 +123,18 @@
 
             <div class="container content">
 
-                   <div class="content-div">
-                       <strong>Assembly language</strong> interacts directly with machine, hence the NASM assembler software changes with the bit configuration of 
-                       Linux machine.
-                       <br/>
-                       In this tutorial we will be focussing on <strong>32-bit Intel x86</strong> processor.
-                   </div>
-                    <div class="content-div">
-                        <h4>Checking if NASM already exists on your system-</h4>
-                        Type the following code in terminal
-                   
-                    
+                <div class="content-div">
+                    <strong>Assembly language</strong> interacts directly with machine, hence the NASM assembler
+                    software changes with the bit configuration of
+                    Linux machine.
+                    <br />
+                    In this tutorial we will be focussing on <strong>32-bit Intel x86</strong> processor.
+                </div>
+                <div class="content-div">
+                    <h4>Checking if NASM already exists on your system-</h4>
+                    Type the following code in terminal
+
+
                     <div class="code-block">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item">
@@ -156,28 +158,36 @@
                             </div>
                         </div>
                     </div>
-                    If the output shows - <span class="start"><code><strong><i>  nasm: /usr/bin/nasm  </i></strong></code></span> then you are good to go. 👍
-                    <br/><br/>
-                    Else if you see the following output - <span class="start"><code><strong><i>  nasm:  </strong></i></code></span> then you need to follow the below steps to setup NASM.
+                    If the output shows - <span class="start"><code><strong><i> nasm: /usr/bin/nasm
+                                </i></strong></code></span> then you are good to go. 👍
+                    <br /><br />
+                    Else if you see the following output - <span class="start"><code><strong><i> nasm:
+                            </strong></i></code></span> then you need to follow the below steps to setup NASM.
+                </div>
+                <div class="content-div">
+                    <h4>Steps to setup NASM environment -</h4>
+                    <ul>
+                        <li>Open the official NASM website <a href="https://www.nasm.us/">https://www.nasm.us/</a> </li>
+                        <li>Click on <strong class="start">STABLE</strong> latest released version</li>
+                        <li>Download the Linux source archive <span class="start">nasm-X.XX.tar.gz</span>, where X.XX is
+                            the NASM version number in the archive.</li>
+                        <li>Unzip the downloaded <span class="start">tar.gz</span> file at suitable location and open
+                            terminal in the newly created NASM folder</li>
+                        <li>Type the following command in termianal
+                            <span class="start">&nbsp; &gt;&gt;</span><span class="start"><code><strong><i> ./configure
+                                        </i></strong></code></span></li>
+                        This shell script will find the best C compiler to use and set up Makefiles accordingly.
+                        <li>Type<span class="start">&nbsp; &gt;&gt;</span><span class="start"><code><strong><i> make
+                                        </i></strong></code></span> to build the nasm and ndisasm binaries.</li>
+                        <li>Type<span class="start">&nbsp; &gt;&gt;</span><span class="start"><code><strong><i> make
+                                            install </i></strong></code></span> to install nasm and ndisasm in
+                            /usr/local/bin and to install the man pages.</li>
+                    </ul>
+                </div>
+                <div class="content-div">
+                    Now you are all set to <a href="basic.html">start learning</a> basics of NASM.
+                </div>
             </div>
-            <div class="content-div">
-            <h4>Steps to setup NASM environment -</h4>
-            <ul>
-                <li>Open the official NASM website <a href="https://www.nasm.us/">https://www.nasm.us/</a> </li>
-                <li>Click on <strong class="start">STABLE</strong> latest released version</li>
-                <li>Download the Linux source archive <span class="start">nasm-X.XX.tar.gz</span>, where X.XX is the NASM version number in the archive.</li>
-                <li>Unzip the downloaded <span class="start">tar.gz</span> file at suitable location and open terminal in the newly created NASM folder</li>
-                <li>Type the following command in termianal 
-                    <span class="start">&nbsp;  &gt;&gt;</span><span class="start"><code><strong><i> ./configure </i></strong></code></span></li>
-                    This shell script will find the best C compiler to use and set up Makefiles accordingly.
-                <li>Type<span class="start">&nbsp;  &gt;&gt;</span><span class="start"><code><strong><i> make </i></strong></code></span> to build the nasm and ndisasm binaries.</li>
-                <li>Type<span class="start">&nbsp;  &gt;&gt;</span><span class="start"><code><strong><i> make install </i></strong></code></span> to install nasm and ndisasm in /usr/local/bin and to install the man pages.</li>
-                </ul>
-            </div>
-             <div class="content-div">
-                 Now you are all set to <a href="basic.html">start learning</a> basics of NASM.
-             </div>
-         </div>
         </main>
     </div>
     <!-- Content Part ends -->

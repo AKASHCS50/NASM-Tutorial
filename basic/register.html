@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="../img/nasm-logo.png">
+
+
+    <title>NASM Tutorial</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/styles.css">
+
+
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+
+    <header class="navbar bg-primary navbar-dark fixed-top">
+
+        <div class="toggler-div">
+            <button type="button" id="sidebarCollapse" class="navbar-toggler" data-toggle="collapse"
+                data-target="#sidebar" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <div id="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../img/nasm-logo.png">
+            </a>
+            <span class="logo-h2">Netwide Assembler Tutorial</span>
+        </div>
+
+    </header>
+    <!-- Navigation bar ends -->
+
+
+
+    <!-- Sidebar -->
+    <div class="wrapper">
+        <nav id="sidebar" class="collapse navbar-collpase">
+            <div class="sidebar-header">
+                <img src="../img/MNIT-logo.png" alt="MENU">
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="../index.html">Introduction</a>
+                </li>
+                <li>
+                    <a href="../setup.html">Setup</a>
+                </li>
+                <li class="active">
+                    <a href="#" data-toggle="collapse" aria-expanded="false" data-target="#basics"
+                        class="dropdown-toggle">Basics</a>
+                    <ul class="collapse list-unstyled" id="basics">
+                        <li>
+                            <a href="assembly.html">Assembly Language</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">Registers</a>
+                        </li>
+                        <li>
+                            <a href="syntax.html">Basic Syntax</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">Pages</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer container">
+
+                <a href="mailto:2018ucp1154@mnit.ac.in" target="_blank" class="btn-social btn-google-plus"><i
+                        class="fa fa-google-plus"></i></a>
+                <a href="https://github.com/AKASHCS50/NASM-Tutorial" target="_blank" class="btn-social btn-github"><i
+                        class="fa fa-github-alt"></i></a>
+                <a href="https://www.linkedin.com/in/akash-sharma-1a5433178/" target="_blank"
+                    class="btn-social btn-linkedin"><i class="fa fa-linkedin"></i></a>
+
+            </div>
+        </nav>
+
+
+        <!-- Sidebar ends -->
+
+
+        <!-- Content part -->
+
+        <main>
+
+            <div class="container content">
+
+                <div class="content-div">
+                    <div class="row justify-content-center">
+                        <h4>Types of Registers</h4>
+                        In Intel x86 32-bit (IA-32) configuration there are ten 32-bit registers, six 16-bit
+                        registers and 32-bit Flag and Instruction pointer registers.<br />
+                        These may be classified as follows - <br /><br />
+
+                        <img src="../img/flowchart.JPG" alt="Types of Registers" class="img-long">
+                    </div><br /><br />
+                    <div class="content-div">
+                        <h4>1. General Purpose Registers</h4>
+                        There are eight 32-bit General purpose registers which are classified in three categories Data
+                        register,
+                        Index register and Pointer register.<br />
+                        <div class="row justify-content-center"><img src="../img/gp.png" class="img-long"></div>
+
+                        <br /><br />
+                        <h5>Data Registers</h5>
+                        There are four data registers EAX, EBX, ECX,and EDX. These are 32-bit
+                        general purpose registers whose lower 16-bits are called AX, BX, CX and DX respectively,
+                        which are further classified in two types high and low of 8-bit each.<br /><br />
+                        <code>EAX - </code> Extended Accumulator is the primary register used during arithematic
+                        operations.<br />
+                        <code>EBX - </code> Extended Base register is used to store address to data.<br />
+                        <code>ECX - </code> Extended Counter register is used to store count during iterative
+                        loops.<br />
+                        <code>EDX - </code> Extended Data register is used to store data during input/output
+                        operations.
+
+
+                        <br /><br /><br />
+                        <h5>Index Registers</h5>
+                        There are two index registers ESI and EDI. These are 32-bit
+                        registers. There lower 16-bits are called SI and DI. These are used for indexed addressing and
+                        sometimes used in addition and subtraction. <br /><br />
+                        <code>ESI - </code> Extended Source Index register is used as a pointer to a source in stream
+                        operations.<br />
+                        <code>EDI - </code> Extended Destination Index register is used as a pointer to a destination in
+                        stream
+                        operations.
+                        data.
+
+                        <br /><br /><br />
+                        <h5>Pointer Registers</h5>
+                        There are two pointer registers ESP and EBP. These are 32-bit
+                        registers. There lower 16-bits are called SP and BP. These help in finding the offset value in
+                        program stack.<br /><br />
+                        <code>ESP - </code> Extended Stack Pointer register points to the top of stack.<br />
+                        <code>EBP - </code> Extended Base Pointer register points to the base of stack.
+                    </div>
+                </div>
+
+                <div class="content-div">
+                    <h4>2. Segment Registers</h4>
+                    Segments are specific areas defined in a program for containing data, code and stack. These
+                    registers
+                    point to the start asddress of various segments in memory. There are six 16-bit segment
+                    registers.<br /><br />
+                    <code>CS - </code> Code Segment register points to the starting address of code area of memory where
+                    the actual
+                    code or instructions of program reside.<br />
+                    <code>DS - </code> Data Segment register points to the starting address of data area of memory which
+                    contains data, constants and work areas.<br />
+                    <code>SS - </code> Stack Segment register points to the starting address of stack area of
+                    memory.<br /><br />
+                    <code>ES</code>, <code>FS</code> and <code>GS</code> are segment registers used to store extra-data.
+                </div>
+
+                <div class="content-div">
+                    <h4>3. Control Registers</h4>
+                    There are two 32-bit control registers IP and flag register. <br /><br />
+                    <code>IP - </code> Instruction Pointer stores the offset of memory address of next instruction
+                    to be executed.<br />
+                    <code>Flag register - </code> Many instructions involve comparisons and mathematical calculations
+                    and change
+                    the status of the flags and some other conditional instructions test the value of these status flags
+                    to take the control flow to other location.
+                    Some common flag bits are - Overflow flag(OF), Interrupt flag(IF), Sign flag(SF), Zero flag(ZF),
+                    Parity flag(PF), Carry flag(CF), etc.
+                </div>
+
+
+            </div>
+        </main>
+    </div>
+    <!-- Content Part ends -->
+
+
+
+    <!-- Footer -->
+
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center footer-div">
+            Developed by <strong>Akash Sharma, 2018UCP1154</strong> as a part of <strong>System Programmming Tutorial
+            </strong>.
+        </div>
+    </footer>
+
+    <!-- Footer ends -->
+
+
+
+    <!-- Javascript -->
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script src="../JS/main.js"></script>
+
+    <!-- Javascript Ends -->
+
+</body>
+
+</html>

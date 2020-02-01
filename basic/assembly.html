@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="icon" type="image/png" href="img/nasm-logo.png">
+    <link rel="icon" type="image/png" href="../img/nasm-logo.png">
 
 
     <title>NASM Tutorial</title>
@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 
 
 </head>
@@ -44,8 +44,8 @@
         </div>
 
         <div class="logo">
-            <a href="index.html">
-                <img src="img/nasm-logo.png">
+            <a href="../index.html">
+                <img src="../img/nasm-logo.png">
             </a>
             <span class="logo-h2">Netwide Assembler Tutorial</span>
         </div>
@@ -59,27 +59,28 @@
     <div class="wrapper">
         <nav id="sidebar" class="collapse navbar-collpase">
             <div class="sidebar-header">
-                <img src="img/MNIT-logo.png" alt="MENU">
+                <img src="../img/MNIT-logo.png" alt="MENU">
             </div>
 
             <ul class="list-unstyled components">
+                <li>
+                    <a href="../index.html">Introduction</a>
+                </li>
+                <li>
+                    <a href="../setup.html">Setup</a>
+                </li>
                 <li class="active">
-                    <a href="#">Introduction</a>
-                </li>
-                <li>
-                    <a href="setup.html">Setup</a>
-                </li>
-                <li>
-                    <a href="basic.html" data-toggle="collapse" aria-expanded="false" data-target="#basics" class="dropdown-toggle">Basics</a>
+                    <a href="#" data-toggle="collapse" aria-expanded="false" data-target="#basics"
+                        class="dropdown-toggle">Basics</a>
                     <ul class="collapse list-unstyled" id="basics">
-                        <li>
-                            <a href="basic/assembly.html">Assembly Language</a>
+                        <li class="active">
+                            <a href="#">Assembly Language</a>
                         </li>
                         <li>
-                            <a href="basic/register.html">Registers</a>
+                            <a href="register.html">Registers</a>
                         </li>
                         <li>
-                            <a href="basic/syntax.html">Basic Syntax</a>
+                            <a href="syntax.html">Basic Syntax</a>
                         </li>
                     </ul>
                 </li>
@@ -123,64 +124,62 @@
             <div class="container content">
 
                 <div class="content-div">
-                    <strong>The Netwide Assembler (NASM)</strong> is an assembler and disassembler for the Intel x86 architecture. It can
-                    be used to write
-                    16-bit, 32-bit (IA-32) and 64-bit (x86-64) assembly programs. NASM is considered to be one of the
-                    most popular assemblers for
-                    Linux.<br />
-                    NASM was originally written by Simon Tatham with assistance from Julian Hall.<br />
-
-                    It is open-source software released under the terms of a simplified (2-clause) BSD license.
-                </div>
-                <div class="content-div">
-                    There are many assembler programs, available such as −
-                    <br/>
-                    <ul>
-                    <strong>
-                    <li>Microsoft Assembler (MASM)</li>
-                    <li>Borland Turbo Assembler (TASM)</li>
-                    <li>The GNU assembler (GAS)</li></strong>
-                    </ul>
-                    In this tutorial we will be using Netwide Assembler(NASM).<br/><br/><br/>
-                    <h4>Advantages of NASM assembler-</h4> <br/>
-                     <ul>
-                         <li>Free and Open Source</li>
-                         <li>Well documented. Official webiste : <a href="https://www.nasm.us/">https://www.nasm.us/</a>
-                         </li>
-                         <li>Works on both Windows and Linux</li>
-                     </ul>
-                </div>
-                <div class="content-div">
-                    To find bit extension of your Linux x86 architecture, Type the following code snippet in your
-                    terminal
-
-                    <div class="code-block">
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-11"
-                                    role="tab" aria-controls="pills-home" aria-selected="true">Code</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-12"
-                                    role="tab" aria-controls="pills-profile" aria-selected="false">Result</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-11" role="tabpanel"
-                                aria-labelledby="pills-home-tab">
-                                <pre><code>
-                                    <span><span class="start">&gt;&gt;</span> uname -a</span>
-                                </code></pre>
-                            </div>
-                            <div class="tab-pane fade" id="pills-12" role="tabpanel"
-                                aria-labelledby="pills-profile-tab">...
-                            </div>
-                        </div>
+                    <h4>Assembly Language</h4>
+                    Assembly Language is a lower level hierarchy of programming languages designed
+                    to interact with specific type of processor. It is basically human readable form of machine
+                    language.
+                    Assembly language has a very strong correspondence with the computer-architecture being used and
+                    utilise
+                    almost no abstraction.<br />
+                    Assembly language uses opcode to provide instructions.<br />
+                    In order to convert an assembly program <code>.asm</code> to machine code an assembler is used,
+                    which
+                    converts the <code>.asm</code> file to object file <code>.o</code> and then linker merges the object
+                    files to
+                    generate a single executable file. <br /><br />
+                    <div class="row justify-content-center">
+                        <img src="../img/asm.jpg" alt="asm" class="img-file">
+                        <img src="../img/arrow.png" class="img-file">
+                        <img src="../img/o.jpg" alt="o" class="img-file">
+                        <img src="../img/arrow.png" class="img-file">
+                        <img src="../img/exe.jpg" alt="exe" class="img-file">
                     </div>
-                    <br/><br/>
-                    Now let us begin <a href="setup.html">setting up</a> the environment for NASM.
                 </div>
-
+                <div class="content-div">
+                    <h4>Memory Segment</h4>
+                    The memory of system is divided into three segments namely - <br />
+                    <ol>
+                        <li><strong>Code Segment - </strong>
+                            It is represented by <code>.text</code> section of assembly code.
+                            It stores the instruction code. Code Segment register <code>CS</code> points to start
+                            address of this memory segment.
+                        </li>
+                        <li><strong>Data Segment - </strong>
+                            It is represented by <code>.data</code> section and <code>.bss</code> section of assembly
+                            code.
+                            It holds data elements of program.Data Segment register <code>DS</code> points to start
+                            address of this memory segment.
+                        </li>
+                        <li><strong>Stack - </strong>
+                            This segment contains data values passed to functions and procedures within the program.
+                            Stack Segment register <code>SS</code> points to start address of this memory segment.
+                        </li>
+                    </ol>
+                </div>
+                <div class="content-div">
+                    <h4>Physical Address Calculation</h4>
+                    The physical address of data or instruction to be fetched that is stored in memory is calculated by
+                    the
+                    processor using the following formula - <br />
+                    <br />
+                    <code class="row justify-content-center">Physical Address = Segment Address * 16 +
+                        Offset</code><br />
+                    where segment address is given by segment resister and offset by Instruction pointer
+                    <code>IP</code>.
+                    <div class="row justify-content-center"><img src="../img/x86_03.jpg" class="img-long"></div>
+                </div>
+                
+            </div>
         </main>
     </div>
     <!-- Content Part ends -->
@@ -211,7 +210,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <script src="JS/main.js"></script>
+    <script src="../JS/main.js"></script>
 
     <!-- Javascript Ends -->
 

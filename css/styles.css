@@ -265,6 +265,7 @@ main{
   margin-bottom: 200px;
   font-size: 1.3rem;
   flex-direction: column;
+  padding-left: 40px;
 }
 
 
@@ -361,6 +362,16 @@ a.btn-social,
 .btn-google-plus:hover
 {
     background-color: #e47365;
+}
+
+.img-file{
+  height: 5rem;
+  margin: 20px;
+}
+
+.img-long{
+  margin: 20px;
+  height: 25rem;
 }
 
 

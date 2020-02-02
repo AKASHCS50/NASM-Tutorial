@@ -418,6 +418,10 @@ a.btn-social,
   color: #007bff;
 }
 
+.comment{
+	color: #37E13E;
+}
+
 #sticky-footer {
   flex-shrink: none;
 }

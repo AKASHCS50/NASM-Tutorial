@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="../img/nasm-logo.png">
+
+
+    <title>NASM Tutorial</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/styles.css">
+
+
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+
+    <header class="navbar bg-primary navbar-dark fixed-top">
+
+        <div class="toggler-div">
+            <button type="button" id="sidebarCollapse" class="navbar-toggler" data-toggle="collapse"
+                data-target="#sidebar" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <div id="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../img/nasm-logo.png">
+            </a>
+            <span class="logo-h2">Netwide Assembler Tutorial</span>
+        </div>
+
+    </header>
+    <!-- Navigation bar ends -->
+
+
+
+    <!-- Sidebar -->
+    <div class="wrapper">
+        <nav id="sidebar" class="collapse navbar-collpase">
+            <div class="sidebar-header">
+                <img src="../img/MNIT-logo.png" alt="MENU">
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="../index.html">Introduction</a>
+                </li>
+                <li>
+                    <a href="../setup.html">Setup</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" aria-expanded="false" data-target="#basics"
+                        class="dropdown-toggle">Basics</a>
+                    <ul class="collapse list-unstyled" id="basics">
+                        <li>
+                            <a href="../basic/assembly.html">Assembly Language</a>
+                        </li>
+                        <li>
+                            <a href="../basic/register.html">Registers</a>
+                        </li>
+                        <li>
+                            <a href="../basic/syntax.html">Basic Syntax</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#" data-toggle="collapse" aria-expanded="false" data-target="#examples"
+                        class="dropdown-toggle">Examples</a>
+                    <ul class="collapse list-unstyled" id="examples">
+                        <li class="active>
+                            <a href="#">Hello World</a>
+                        </li>
+                        <li>
+                            <a href="read_write.html">Input and Output</a>
+                        </li>
+                        <li>
+                            <a href="operations.html">Arithematic Operations</a>
+                        </li>
+                        <li>
+     					<li>
+     						<a href="factorial.html">Factorial</a>
+     					</li>            
+                        <li>
+                            <a href="file.html">File Handling</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer container">
+
+                <a href="mailto:2018ucp1154@mnit.ac.in" target="_blank" class="btn-social btn-google-plus"><i
+                        class="fa fa-google-plus"></i></a>
+                <a href="https://github.com/AKASHCS50/NASM-Tutorial" target="_blank" class="btn-social btn-github"><i
+                        class="fa fa-github-alt"></i></a>
+                <a href="https://www.linkedin.com/in/akash-sharma-1a5433178/" target="_blank"
+                    class="btn-social btn-linkedin"><i class="fa fa-linkedin"></i></a>
+
+            </div>
+        </nav>
+
+
+        <!-- Sidebar ends -->
+
+
+        <!-- Content part -->
+
+        <main>
+
+            <div class="container content">
+
+                <div class="content-div">
+                  
+                  Let's begin with printing 'Hello World!' on screen.<br/>
+                  Let us create a <code>hello.o</code> assembly file.<br/>
+                  In order to begin the assembly code we need to define the entry point for program using 
+                  <code>global</code> keyword which makes the identifier accessible to linker.
+                  
+                  <div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-31"
+                                    role="tab" aria-controls="pills-31" aria-selected="true">Code</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-31" role="tabpanel"
+                                aria-labelledby="pills-31">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    Now let's make system exiit call by moving 1 in eax register and using 0 as exit status in the text section.
+                    
+                    <div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-32"
+                                    role="tab" aria-controls="pills-32" aria-selected="true">Code</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-32" role="tabpanel"
+                                aria-labelledby="pills-32">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+      
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+			
+					Now let's execute the program to see the output.<br/>
+					We first convert the assembly code to 32-bit executable and linking format object file and then
+					linker generates an executable file from object file.
+					
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-34"
+                                    role="tab" aria-controls="pills-34" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-35"
+                                    role="tab" aria-controls="pills-35" aria-selected="false">Result</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-34" role="tabpanel"
+                                aria-labelledby="34">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 hello.asm -o hello.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 hello.o -o hello </p>
+                                    <p><span class="start">&gt;&gt;</span> ./hello </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            <div class="tab-pane fade" id="pills-35" role="tabpanel"
+                                aria-labelledby="pills-35">
+                                 <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div> 
+					
+					Now let us define some constants in data section.
+					
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-36"
+                                    role="tab" aria-controls="pills-36" aria-selected="true">Code</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-36" role="tabpanel"
+                                aria-labelledby="pills-36">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data</p>
+                                    <p>msg <span class="start">db</span> "Hello World!", 0x0a		<span class="comment">; msg="Hello World!\n"</span></p>
+                                    <p>len <span class="start">equ</span> $ - msg		<span class="comment">; len equals size of msg</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    Here <code>db</code> stands for describe byte to declare a 1 byte directive and <code>db</code> for defining a constant value.<br/>
+					Let us expand our text section and move 4 to eax for system write and run the program to get our required output.
+				
+				
+				
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-37"
+                                    role="tab" aria-controls="pills-37" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-38"
+                                    role="tab" aria-controls="pills-38" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-39"
+                                    role="tab" aria-controls="pills-39" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-37" role="tabpanel"
+                                aria-labelledby="pills-37">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data</p>
+                                    <p>msg <span class="start">db</span> "Hello World!", 0x0a		<span class="comment">; msg="Hello World!\n"</span></p>
+                                    <p>len <span class="start">equ</span> $ - msg		<span class="comment">; len equals size of msg</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, msg		<span class="comment">; ecx=msg</p>
+                                    <p><span class="start">mov edx</span>, len		<span class="comment">; edx=len</p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+      <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-38" role="tabpanel"
+                                aria-labelledby="pills-38">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 hello.asm -o hello.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 hello.o -o hello </p>
+                                    <p><span class="start">&gt;&gt;</span> ./hello </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-39" role="tabpanel"
+                                aria-labelledby="pills-39">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Hello World!</p>
+                                   <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>	
+                     This completes our first assembly program. In next example we will perform some basic <a href="operations.html">Arithmetic Opeartions</a>. 	
+				</div>		
+						
+            </div>
+        </main>
+    </div>
+    <!-- Content Part ends -->
+
+
+
+    <!-- Footer -->
+
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center footer-div">
+            Developed by <strong>Akash Sharma, 2018UCP1154</strong> as a part of <strong>System Programmming Tutorial
+            </strong>.
+        </div>
+    </footer>
+
+    <!-- Footer ends -->
+
+
+
+    <!-- Javascript -->
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script src="../JS/main.js"></script>
+
+    <!-- Javascript Ends -->
+
+</body>
+
+</html>

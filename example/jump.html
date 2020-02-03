@@ -69,42 +69,42 @@
                 <li>
                     <a href="../setup.html">Setup</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#" data-toggle="collapse" aria-expanded="false" data-target="#basics"
                         class="dropdown-toggle">Basics</a>
                     <ul class="collapse list-unstyled" id="basics">
                         <li>
-                            <a href="assembly.html">Assembly Language</a>
+                            <a href="../basic/assembly.html">Assembly Language</a>
                         </li>
                         <li>
-                            <a href="register.html">Registers</a>
+                            <a href="../basic/register.html">Registers</a>
                         </li>
-                        <li class="active">
-                            <a href="#">Basic Syntax</a>
+                        <li>
+                            <a href="../basic/syntax.html">Basic Syntax</a>
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#" data-toggle="collapse" aria-expanded="false" data-target="#examples"
                         class="dropdown-toggle">Examples</a>
                     <ul class="collapse list-unstyled" id="examples">
                         <li>
-                            <a href="../example/hello.html">Hello World</a>
+                            <a href="hello.html">Hello World</a>
                         </li>
                         <li>
-                            <a href="../example/read_write.html">Input and Output</a>
+                            <a href="read_write.html">Input and Output</a>
                         </li>
                         <li>
-                            <a href="../example/operations.html">Arithematic Operations</a>
+                            <a href="operations.html">Arithematic Operations</a>
                         </li>
-                    	   <li>
-     						<a href="../example/jump.html">Jump Statement</a>
-     					</li> 
+                        <li class="active">
+     						<a href="#">Jump Statement</a>
+     					</li>
      					<li>
-     						<a href="../example/factorial.html">Factorial</a>
+     						<a href="factorial.html">Factorial</a>
      					</li>            
                         <li>
-                            <a href="../example/file.html">File Handling</a>
+                            <a href="file.html">File Handling</a>
                         </li>
                     </ul>
                 </li>
@@ -131,122 +131,11 @@
         <main>
 
             <div class="container content">
-				<div class="content-div">
-					<h4>Basic Syntax</h4><br/>
-					An assembly program typically consits of three parts - <br/>
-					<strong>1. data section - </strong>This section is used to declare initialized data or constants, whose values
-					would remain fixed during program run. It is declared as <code>section.data</code><br/><br/> 
-					<strong>2. bss section - </strong>BSS stands for block started by symbol. This section is used to declare
-					 variables whose values can change during program run. It is declared as <code>section.bss</code><br><br> 
-					<strong>3. text section - </strong>This section stores the actual code. This section must begin with the
-					 declaration <code>global _start</code>, which tells the kernel where the program execution
-					  begins.<br/><code>section.text <br/> &nbsp; global _start<br/>_start:</code>
-					<br/><br/>
-					To give comment in assembly program semicolon <code>;</code> is used.<br/>
-					Hence general synatx of Assembly intruction is <code>[label]   mnemonic   [operands]   [;comment]</code>
-				</div>
-				
-				<div class="content-div">
-					<h4>System Calls</h4>
-					In order to make system calls, perform the following operations - <br/><br/>
-					<ul>
-						<li>Insert the system call number in the EAX register.</li>
-						<li>Store the arguments to the system call in order in following registers - EBX, ECX, EDX, ESI, EDI and EBP.
-						<li>Call the relevant interrupt (80h).</li>
-					</ul>	
-				</div>
-				<div class="content-div">	
-					Some common System calls are - <br/><br/>
-					<div class="row justify-content-center">
-				
-					  <table class="table table-hover table-striped table-responsive">
-    						<thead class="thead-dark">
-      						<tr>
-        						<th>EAX</th>
-        						<th>System Call</th>
-        						<th>EBX</th>
-        						<th>ECX</th>
-        						<th>EDX</th>
-        						<th>ESI</th>
-        						<th>EDI</th>
-        						<th>EBP</th>
-     				 			</tr>
-    					</thead>
-    					<tbody>
-      							<tr>
-        						<td>1</td>
-      		  					<td>sys_exit</td>
-        						<td>int</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-      							</tr>
-      							
-      							<tr>
-        						<td>2</td>
-      		  					<td>sys_fork</td>
-        						<td>struct pt_regs</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-      							</tr>
-      							
-      							<tr>
-        						<td>3</td>
-      		  					<td>sys_read</td>
-        						<td>unsigned int</td>
-        						<td>char*</td>
-        						<td>size_t</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-      							</tr>	
-      							
-      							<tr>
-        						<td>4</td>
-      		  					<td>sys_write</td>
-        						<td>unsigned int</td>
-        						<td>const char*</td>
-        						<td>size_t</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-      							</tr>							
-      
-      							<tr>
-        						<td>5</td>
-      		  					<td>sys_open</td>
-        						<td>const char*</td>
-        						<td>int</td>
-        						<td>int</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-      							</tr>
-      							
-      								
-      							<tr>
-        						<td>6</td>
-      		  					<td>sys_close</td>
-        						<td>unsigned int</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-        						<td>-</td>
-      							</tr>
-      		
-   				 		</tbody>
-  				</table>
-				</div><br/><br/>
-					All the syscalls are listed in <code>/usr/include/asm/unistd.h</code>.	
-					<br/>
-					Now let's begin practising some <a href="../example/hello.html">examples</a>. 
-				</div>
+
+                <div class="content-div">
+               Jump
+               </div>
+
             </div>
         </main>
     </div>

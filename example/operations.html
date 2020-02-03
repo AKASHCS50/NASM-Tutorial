@@ -131,7 +131,426 @@
             <div class="container content">
 
                 <div class="content-div">
-                  
+                <h4> Addition </h4>
+                   Create a assembly file named <code>operations_add.asm</code>. <br/>
+                
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-41"
+                                    role="tab" aria-controls="pills-41" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-42"
+                                    role="tab" aria-controls="pills-42" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-43"
+                                    role="tab" aria-controls="pills-43" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-41" role="tabpanel"
+                                aria-labelledby="pills-41">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data</p>
+                                    <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                       <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Sum is "		<span class="comment">; disp_prompt="The Sum is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>section .bss</p>
+                                    <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
+                                     <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
+                                    <p>sum <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable sum</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
+                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
+                                     <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
+                                                                        	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
+                                     <p><span class="start">mov ebx, </span> [second]		<span class="comment">; Moving second value to ebx<span></p>   
+                                                                        	   	<p><span class="start">sub ebx</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	<p><span class="start">add eax</span>, <span class="start">ebx</span>		<span class="comment">; Adding the numbers in registers<span></p>  
+                                   	   	<p><span class="start">add eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	   	<p><span class="start">mov</span> [sum], <span class="start">eax</span>		<span class="comment">; Storing the result in sum<span></p>                                                                                            
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, sum		<span class="comment">; ecx=sum</p>
+                                    <p><span class="start">mov edx</span>, 1	                 
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+      <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-42" role="tabpanel"
+                                aria-labelledby="pills-42">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 operations_add.asm -o operations_add.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 operations_add.o -o operations_add </p>
+                                    <p><span class="start">&gt;&gt;</span> ./operations_add </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-43" role="tabpanel"
+                                aria-labelledby="pills-43">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Enter the first number <span class="start">2</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Enter the second number <span class="start">3</span></p>
+                                    <p><span class="start">&gt;&gt;</span> The Sum is 5</p>
+                                   <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>          
+                     <div class="content-div">
+                <h4> Subtraction </h4>
+                   Create a assembly file named <code>operations_diff.asm</code>. <br/>
+                
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-44"
+                                    role="tab" aria-controls="pills-44" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-45"
+                                    role="tab" aria-controls="pills-45" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-46"
+                                    role="tab" aria-controls="pills-46" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-44" role="tabpanel"
+                                aria-labelledby="pills-44">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data</p>
+                                    <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                       <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Difference is "		<span class="comment">; disp_prompt="The Difference is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>section .bss</p>
+                                    <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
+                                     <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
+                                    <p>diff <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable diff</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
+                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
+                                     <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
+                                                                        	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
+                                     <p><span class="start">mov ebx, </span> [second]		<span class="comment">; Moving second value to ebx<span></p>   
+                                                                        	   	<p><span class="start">sub ebx</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	<p><span class="start">sub eax</span>, <span class="start">ebx</span>		<span class="comment">; Subtracting the numbers in registers<span></p>  
+                                   	   	<p><span class="start">add eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	   	<p><span class="start">mov</span> [diff], <span class="start">eax</span>		<span class="comment">; Storing the result in diff<span></p>                                                                                            
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, diff		<span class="comment">; ecx=diff</p>
+                                    <p><span class="start">mov edx</span>, 1	                 
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+      <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-45" role="tabpanel"
+                                aria-labelledby="pills-45">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 operations_diff.asm -o operations_diff.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 operations_diff.o -o operations_diff </p>
+                                    <p><span class="start">&gt;&gt;</span> ./operations_diff </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-46" role="tabpanel"
+                                aria-labelledby="pills-46">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Enter the first number <span class="start">8</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Enter the second number <span class="start">3</span></p>
+                                    <p><span class="start">&gt;&gt;</span> The Difference is 5</p>
+                                   <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>              
+                       </div>
+                    </div>             	 
+      	 
+                
+                    <div class="content-div">
+                <h4> Multipliaction </h4>
+                   Create a assembly file named <code>operations_prod.asm</code>. <br/>
+                
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-47"
+                                    role="tab" aria-controls="pills-47" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-48"
+                                    role="tab" aria-controls="pills-48" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-49"
+                                    role="tab" aria-controls="pills-49" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-47" role="tabpanel"
+                                aria-labelledby="pills-47">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data</p>
+                                    <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                       <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Product is "		<span class="comment">; disp_prompt="The Product is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>section .bss</p>
+                                    <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
+                                     <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
+                                    <p>prod <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable prod</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
+                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
+                                     <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
+                                                                        	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
+                                     <p><span class="start">mov ebx, </span> [second]		<span class="comment">; Moving second value to ebx<span></p>   
+                                                                        	   	<p><span class="start">sub ebx</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	<p><span class="start">mul ebx		<span class="comment">; Multiplying the numbers in registers<span></p>  
+                                   	   	<p><span class="start">add eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	   	<p><span class="start">mov</span> [prod], <span class="start">eax</span>		<span class="comment">; Storing the result in prod<span></p>                                                                                            
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, prod		<span class="comment">; ecx=prod</p>
+                                    <p><span class="start">mov edx</span>, 1	                 
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+      <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-48" role="tabpanel"
+                                aria-labelledby="pills-48">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 operations_prod.asm -o operations_prod.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 operations_prod.o -o operations_prod </p>
+                                    <p><span class="start">&gt;&gt;</span> ./operations_prod </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-49" role="tabpanel"
+                                aria-labelledby="pills-49">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Enter the first number <span class="start">2</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Enter the second number <span class="start">3</span></p>
+                                    <p><span class="start">&gt;&gt;</span> The Product is 6</p>
+                                   <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>  
+                    
+                    
+                          <div class="content-div">
+                <h4> Multipliaction </h4>
+                   Create a assembly file named <code>operations_prod.asm</code>. <br/>
+                
+					<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-410"
+                                    role="tab" aria-controls="pills-410" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-411"
+                                    role="tab" aria-controls="pills-411" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-412"
+                                    role="tab" aria-controls="pills-412" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-410" role="tabpanel"
+                                aria-labelledby="pills-410">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data</p>
+                                    <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                       <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Product is "		<span class="comment">; disp_prompt="The Product is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>section .bss</p>
+                                    <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
+                                     <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
+                                    <p>prod <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable prod</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
+                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
+                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
+                                     <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
+                                                                        	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
+                                     <p><span class="start">mov ebx, </span> [second]		<span class="comment">; Moving second value to ebx<span></p>   
+                                                                        	   	<p><span class="start">sub ebx</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	<p><span class="start">mul ebx		<span class="comment">; Multiplying the numbers in registers<span></p>  
+                                   	   	<p><span class="start">add eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
+                                   	   	<p><span class="start">mov</span> [prod], <span class="start">eax</span>		<span class="comment">; Storing the result in prod<span></p>                                                                                            
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, prod		<span class="comment">; ecx=prod</p>
+                                    <p><span class="start">mov edx</span>, 1	                 
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+      <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-411" role="tabpanel"
+                                aria-labelledby="pills-411">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 operations_prod.asm -o operations_prod.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 operations_prod.o -o operations_prod </p>
+                                    <p><span class="start">&gt;&gt;</span> ./operations_prod </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-412" role="tabpanel"
+                                aria-labelledby="pills-412">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Enter the first number <span class="start">2</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Enter the second number <span class="start">3</span></p>
+                                    <p><span class="start">&gt;&gt;</span> The Product is 6</p>
+                                   <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                        </div>
+                    </div> 
+                    
+                
+                    This completes our Input Output assembly program. In next example we will perform some basic <a href="operations.html">Arithmetic Opeartions</a>. 
                 </div>
 
 

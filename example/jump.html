@@ -133,9 +133,149 @@
             <div class="container content">
 
                 <div class="content-div">
-               Jump
+                <h4>Jump Statements</h4>
+               		Jump statements are used to skip over a part of code by sending the instruction pointer to a different location.
+               		We can jump to some defined label using <code>jmp</code>.<br/>
+               		<code>cmp</code> is used to compare two values, which can be used in conditional jumps. Conditional jumps are
+               		performed by using following keywords - <br/>
+               		
+               			<code>je</code> A, B <comment>; JUMP if equal </comment><br/>
+               			<code>jne</code> A, B <comment>; JUMP if not equal </comment><br/>
+               			<code>jg</code> A, B <comment>; JUMP if greater </comment><br/>
+               			<code>jge</code> A, B <comment>; JUMP if greater or equal </comment><br/>
+               			<code>jl</code> A, B <comment>; JUMP if less </comment><br/>
+               			<code>jle</code> A, B <comment>; JUMP if less or equal </comment><br/>
                </div>
-
+               
+               <div class="content-div">
+               		Let us do an example to compare two numbers to further understand jump statements.<br/>
+               		Make an assembly file called jump.asm and follow along - <br/>
+               		
+               		
+               		<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-51"
+                                    role="tab" aria-controls="pills-51" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-52"
+                                    role="tab" aria-controls="pills-52" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-53"
+                                    role="tab" aria-controls="pills-53" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-51" role="tabpanel"
+                                aria-labelledby="pills-51">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
+                                    <p>section .data</p>
+                                    <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                       <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>greater_prompt <span class="start">db</span> "is greater"		<span class="comment">; greater_prompt="is greater"</span></p>
+                                    <p>len_greater_prompt <span class="start">equ</span> $ - greater_prompt		<span class="comment">; len_greater_prompt equals size of greater_prompt</span></p>
+                                     <p>equal_prompt <span class="start">db</span> "Numbers are equal"		<span class="comment">; equal_prompt="Numbers are equal"</span></p>
+                                    <p>len_equal_prompt <span class="start">equ</span> $ - equal_prompt		<span class="comment">; len_equal_prompt equals size of equal_prompt</span></p>
+                                    <p>section .bss</p>
+                                    <p>first <span class="start">resb</span> 5		<span class="comment">; Unitialized data variable first</span></p>
+                                     <p>second <span class="start">resb</span> 5		<span class="comment">; Unitialized data variable second</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in first</p>
+                                    <p><span class="start">mov edx</span>, 5	<span class="comment">; 5 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                      <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
+                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read second input value in second</p>
+                                    <p><span class="start">mov edx</span>, 5	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
+                                      <p><span class="start">mov eax</span>, [first]		<span class="comment">; eax equal to value of first</p>
+                                                                            <p><span class="start">mov ebx</span>, [second]		<span class="comment">; ebx equal to value of second</p>
+                                       <p><span class="start">cmp eax</span>, <span class="start">ebx</span>		<span class="comment">; Comparing and storing result in flag register</p>   
+                                       <p><span class="start">jl</span>	lessthan	<span class="comment">; Jump to label less than if reult is less</p> 
+                                       <p><span class="start">jg</span>	greaterthan	<span class="comment">; Jump to label greater than if reult is greater</p> 
+ <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call if numbers are equal</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, equal_prompt		<span class="comment">; ecx=equal_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_equal_prompt		<span class="comment">; edx=len_equal_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                    	<p><span class="start">jmp</span> exit		<span class="comment">; Jump to exit label</span></p>
+                                    	<p>lessthan:		<span class="comment">; less than label</span></p>   
+                                    <p><span class="start">	mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">	mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">	mov ecx</span>, second		<span class="comment">; ecx=second</p>
+                                    <p><span class="start">	mov edx</span>, 5	<span class="comment">; 5 bytes for number</p>
+                                     <p><span class="start">	int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                      <p><span class="start">	mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">	mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">	mov ecx</span>, greater_prompt		<span class="comment">; ecx=greater_prompt</p>
+                                    <p><span class="start">	mov edx</span>, len_greater_prompt		<span class="comment">; edx=len_greater_prompt</p>
+                                     <p><span class="start">	int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                    <p><span class="start">	jmp</span> exit		<span class="comment">; Jump to exit label</span></p>                          
+                                    <p>greaterthan:		<span class="comment">; greater than label</span></p>   
+                                    <p><span class="start">	mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">	mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">	mov ecx</span>, first		<span class="comment">; ecx=first</p>
+                                    <p><span class="start">	mov edx</span>, 5		<span class="comment">; 5 bytes for number</p>
+                                     <p><span class="start">	int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
+                                      <p><span class="start">	mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">	mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">	mov ecx</span>, greater_prompt		<span class="comment">; ecx=greater_prompt</p>
+                                    <p><span class="start">	mov edx</span>, len_greater_prompt		<span class="comment">; edx=len_greater_prompt</p>
+                                     <p><span class="start">	int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
+                                    <p><span class="start">	jmp</span> exit		<span class="comment">; Jump to exit label</span></p>         
+                                    <p>exit:		<span class="comment">; exit label</span></p>   
+   <p><span class="start">	mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">	mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">	int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>                       </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-52" role="tabpanel"
+                                aria-labelledby="pills-52">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 flag.asm -o flag.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 flag.o -o flag </p>
+                                    <p><span class="start">&gt;&gt;</span> ./flag </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-53" role="tabpanel"
+                                aria-labelledby="pills-53">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Enter the first number <span class="start">15</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Enter the second number <span class="start">23</span></p>
+                                   <p><span class="start">&gt;&gt;</span> 23</p>
+                                   <p><span class="start">&gt;&gt;</span> is greater</p>
+                                   <br/>
+                                   <p><span class="start">&gt;&gt;</span> Enter the first number <span class="start">3</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Enter the second number <span class="start">3</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Numbers are equal</p>
+                                </code></pre>
+                            </div>              
+                       </div>
+               		
+               		
+               </div>
+               <br/>
+					Now let us expand our knowledge of operations and jump statement to find <a href="factorial.html">factorial</a> of a number.
             </div>
         </main>
     </div>

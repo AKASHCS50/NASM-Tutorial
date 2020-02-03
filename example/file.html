@@ -133,86 +133,101 @@
             <div class="container content">
 
                 <div class="content-div">
-                    <div class="row justify-content-center">
-                        <h4>Types of Registers</h4>
-                        In Intel x86 32-bit (IA-32) configuration there are ten 32-bit registers, six 16-bit
-                        registers and 32-bit Flag and Instruction pointer registers.<br />
-                        These may be classified as follows - <br /><br />
-
-                        <img src="../img/flowchart.JPG" alt="Types of Registers" class="img-long">
-                    </div><br /><br />
-                    <div class="content-div">
-                        <h4>1. General Purpose Registers</h4>
-                        There are eight 32-bit General purpose registers which are classified in three categories Data
-                        register,
-                        Index register and Pointer register.<br />
-                        <div class="row justify-content-center"><img src="../img/gp.png" class="img-long"></div>
-
-                        <br /><br />
-                        <h5>Data Registers</h5>
-                        There are four data registers EAX, EBX, ECX,and EDX. These are 32-bit
-                        general purpose registers whose lower 16-bits are called AX, BX, CX and DX respectively,
-                        which are further classified in two types high and low of 8-bit each.<br /><br />
-                        <code>EAX - </code> Extended Accumulator is the primary register used during arithematic
-                        operations.<br />
-                        <code>EBX - </code> Extended Base register is used to store address to data.<br />
-                        <code>ECX - </code> Extended Counter register is used to store count during iterative
-                        loops.<br />
-                        <code>EDX - </code> Extended Data register is used to store data during input/output
-                        operations.
-
-
-                        <br /><br /><br />
-                        <h5>Index Registers</h5>
-                        There are two index registers ESI and EDI. These are 32-bit
-                        registers. There lower 16-bits are called SI and DI. These are used for indexed addressing and
-                        sometimes used in addition and subtraction. <br /><br />
-                        <code>ESI - </code> Extended Source Index register is used as a pointer to a source in stream
-                        operations.<br />
-                        <code>EDI - </code> Extended Destination Index register is used as a pointer to a destination in
-                        stream
-                        operations.
-
-                        <br /><br /><br />
-                        <h5>Pointer Registers</h5>
-                        There are two pointer registers ESP and EBP. These are 32-bit
-                        registers. There lower 16-bits are called SP and BP. These help in finding the offset value in
-                        program stack.<br /><br />
-                        <code>ESP - </code> Extended Stack Pointer register points to the top of stack.<br />
-                        <code>EBP - </code> Extended Base Pointer register points to the base of stack.
-                    </div>
+                    <h4>File Handling</h4>
+                    In this example we will study how to create a new file, open an existing one, read from a file,
+                    write in a file and close a file.
                 </div>
-
+                
                 <div class="content-div">
-                    <h4>2. Segment Registers</h4>
-                    Segments are specific areas defined in a program for containing data, code and stack. These
-                    registers
-                    point to the start asddress of various segments in memory. There are six 16-bit segment
-                    registers.<br /><br />
-                    <code>CS - </code> Code Segment register points to the starting address of code area of memory where
-                    the actual
-                    code or instructions of program reside.<br />
-                    <code>DS - </code> Data Segment register points to the starting address of data area of memory which
-                    contains data, constants and work areas.<br />
-                    <code>SS - </code> Stack Segment register points to the starting address of stack area of
-                    memory.<br /><br />
-                    <code>ES</code>, <code>FS</code> and <code>GS</code> are segment registers used to store extra-data.
+                	<h4>File Descriptor</h4>
+                	A file descriptor acts as a file id. It is a 16-bit integer assigned when a new file is created or a file is 
+                	opened. It is generated in eax register. 
                 </div>
-
+                
                 <div class="content-div">
-                    <h4>3. Control Registers</h4>
-                    There are two 32-bit control registers IP and flag register. <br /><br />
-                    <code>IP - </code> Instruction Pointer stores the offset of memory address of next instruction
-                    to be executed.<br />
-                    <code>Flag register - </code> Many instructions involve comparisons and mathematical calculations
-                    and change
-                    the status of the flags and some other conditional instructions test the value of these status flags
-                    to take the control flow to other location.
-                    Some common flag bits are - Overflow flag(OF), Interrupt flag(IF), Sign flag(SF), Zero flag(ZF),
-                    Parity flag(PF), Carry flag(CF), etc.
-                </div>
-
-
+                	Create an assembly file <code>file.asm</code> and follow along -<br/>
+                	
+                	<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-71"
+                                    role="tab" aria-controls="pills-71" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-72"
+                                    role="tab" aria-controls="pills-72" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-73"
+                                    role="tab" aria-controls="pills-73" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-71" role="tabpanel"
+                                aria-labelledby="pills-71">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p>section .data		</p> 
+                                      <p>file_name <span class="start">db</span> "data.txt", 0x0a		<span class="comment">; Defining file name</span></p>
+                                    <p>msg <span class="start">db</span> "This is NASM tutorial.", 0x0a		<span class="comment">; The message</span></p>
+                                    <p>len <span class="start">equ</span> $ - msg		<span class="comment">; len equals size of msg</span></p>  
+                                     <p>section .bss		</p> 
+                                     <p>fd_out <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable, file descriptor for write</span></p>
+                                        <p>fd_in <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable, file descriptor for read</span></p>
+                                         <p>info <span class="start">resb</span> 26		<span class="comment">; Unitialized data variable info</span></p>
+                                         <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 8		<span class="comment">; sys_creat system call</p>
+                                    <p><span class="start">mov ebx</span>, file_name		<span class="comment">; file name as second parameter</p>
+                                    <p><span class="start">mov ecx</span>, 0777		<span class="comment">; Setting permission for read, write and execute by all in third parameter</p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                    <p><span class="start">mov</span> [fd_out], <span class="start">eax</span>		<span class="comment">; Reading the file descriptor in fd_out from eax</p>
+                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, [fd_out]		<span class="comment">; file descriptor fd_out</p>
+                                    <p><span class="start">mov ecx</span>, msg		<span class="comment">; ecx=msg</p>
+                                    <p><span class="start">mov edx</span>, len		<span class="comment">; edx=len</p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                    <p><span class="start">mov eax</span>, 6		<span class="comment">; sys_close system call</p>
+                                    <p><span class="start">mov ebx</span>, [fd_out]		<span class="comment">; file descriptor fd_out</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                      <p><span class="start">mov eax</span>, 5		<span class="comment">; sys_open system call</p>
+                                    <p><span class="start">mov ebx</span>, file_name		<span class="comment">; Setting file name to be opened</p>
+                                    <p><span class="start">mov ecx</span>, 0		<span class="comment">; for read only access</p>
+                                    <p><span class="start">mov edx</span>, 0777		<span class="comment">; Setting permission for read, write and execute by all</p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                    <p><span class="start">mov [fd_in]</span>, <span class="start">eax</span>		<span class="comment">; Reading file descriptor of opened file in fd_in</p>
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, [fd_in]		<span class="comment">; file descriptor fd_in</p>
+                                    <p><span class="start">mov ecx</span>, info		<span class="comment">; Reading in info</p>
+                                    <p><span class="start">mov edx</span>, 26		
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                   <p><span class="start">mov eax</span>, 6		<span class="comment">; sys_close system call</p>
+                                    <p><span class="start">mov ebx</span>, [fd_in]		<span class="comment">; file descriptor fd_in</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                           <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div> 
+                            
+                            <div class="tab-pane fade show" id="pills-72" role="tabpanel"
+                                aria-labelledby="pills-72">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 file.asm -o file.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 file.o -o file </p>
+                                    <p><span class="start">&gt;&gt;</span> ./file </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-73" role="tabpanel"
+                                aria-labelledby="pills-73">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> This is NASM tutorial.</p>
+                                </code></pre>
+                            </div>              
+                       </div>
+               </div>
             </div>
         </main>
     </div>

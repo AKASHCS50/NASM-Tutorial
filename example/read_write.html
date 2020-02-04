@@ -156,30 +156,30 @@
                             <div class="tab-pane fade show active" id="pills-41" role="tabpanel"
                                 aria-labelledby="pills-41">
                                  <pre><code>
-                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
                                     <p>section .data</p>
                                     <p>input_prompt <span class="start">db</span> "Enter an integer "		<span class="comment">; input_prompt="Enter an integer "</span></p>
                                     <p>len_input_prompt <span class="start">equ</span> $ - input_prompt		<span class="comment">; len_input_prompt equals size of input_prompt</span></p>
-                                    <p>disp_prompt <span class="start">db</span> "You entered "		<span class="comment">; disp_prompt="You entered "</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "You entered "			<span class="comment">; disp_prompt="You entered "</span></p>
                                     <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
                                     <p>section .bss</p>
-                                    <p>data <span class="start">resb</span> 5		<span class="comment">; Unitialized data variable</span></p>
+                                    <p>data <span class="start">resb</span> 5		<span class="comment">; Unitialized data variable data</span></p>
                                     <p>section .text</p>
                                     <p>_start:			<span class="comment">; start label</span></p>
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, input_prompt		<span class="comment">; ecx=input_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_input_prompt		<span class="comment">; edx=len_input_prompt</p>
-                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>   
+                                    <p><span class="start">mov edx</span>, len_input_prompt	<span class="comment">; edx=len_input_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler </span></p>   
                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
                                     <p><span class="start">mov ecx</span>, data		<span class="comment">; Read input value in data</p>
-                                    <p><span class="start">mov edx</span>, 5	<span class="comment">; 5 bytes (numeric, 1 for sign) of that data value</p> 
-                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>                                                                    
+                                    <p><span class="start">mov edx</span>, 5		<span class="comment">; 5 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler </span></p>                                                                    
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">mov edx</span>, len_disp_prompt	<span class="comment">; edx=len_disp_prompt</p>                  
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>

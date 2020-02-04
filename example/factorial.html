@@ -134,6 +134,102 @@
 
                 <div class="content-div">
                     
+                    Make a assembly file <code>factorial.asm</code> and follow along - <br/>
+                    
+                    			<div class="code-block">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-51"
+                                    role="tab" aria-controls="pills-51" aria-selected="true">Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-52"
+                                    role="tab" aria-controls="pills-52" aria-selected="true">Terminal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-53"
+                                    role="tab" aria-controls="pills-53" aria-selected="true">Output</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-51" role="tabpanel"
+                                aria-labelledby="pills-51">
+                                 <pre><code>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
+                                    <p>section .data</p>
+                                    <p>input_prompt <span class="start">db</span> "Enter an integer "		<span class="comment">; input_prompt="Enter an integer "</span></p>
+                                    <p>len_input_prompt <span class="start">equ</span> $ - input_prompt		<span class="comment">; len_input_prompt equals size of input_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "Factorial is "			<span class="comment">; disp_prompt="Factorial is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>section .bss</p>
+                                    <p>data <span class="start">resb</span> 5		<span class="comment">; Unitialized data variable data</span></p> 
+                                    <p>ans <span class="start">resb</span> 5		<span class="comment">; Unitialized data variable ans</span></p>
+                                    <p>section .text</p>
+                                    <p>_start:			<span class="comment">; start label</span></p>
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, input_prompt		<span class="comment">; ecx=input_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_input_prompt	<span class="comment">; edx=len_input_prompt</p>
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>   
+                                    <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
+                                    <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, data		<span class="comment">; Read input value in data</p>
+                                    <p><span class="start">mov edx</span>, 5		<span class="comment">; 5 bytes (numeric, 1 for sign) of that data value</p> 
+                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>                                                                    
+                                    <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+                                    <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+                                    <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_disp_prompt	<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                    <p><span class="start">mov eax</span>, 1		<span class="comment">; eax=1</p>
+                                     <p><span class="start">mov ecx</span>, [count]	<span class="comment">; eac equal to value in count </p>
+                                      <p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII </p>
+                                       <p>label:</p>	
+                                        <p><span class="start">	mul ecx</span>, 1		<span class="comment">;  multiply eax with ecx</p>
+                                         <p><span class="start">	dec ecx</span>			<span class="comment">; ecx=ecx-1</p>
+                                     <p><span class="start">	mov</span> [ans], <span class="start">ecx	</span>	<span class="comment">; ans value equal to ecx</p>
+                                     <p><span class="start">	add eax</span>, '0'		<span class="comment">; Converting to ASCII</p>
+                                     <p><span class="start">	cmp ecx</span>, 1		<span class="comment">; Comparing ecx with 1</p>
+      <p><span class="start">	jg</span> label		<span class="comment">; if greater than 1 jump to label</p>
+      <p><span class="start">	mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+      <p><span class="start">	mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+      <p><span class="start">	mov ecx</span>, ans		<span class="comment">; ecx=ans</p>
+      <p><span class="start">	mov edx</span>, 5		<span class="comment">; 5 bytes (numeric, 1 for sign) of that data value</p>
+       <p><span class="start">	int</span> 0x80		<span class="comment">; Perform the system call</p>
+      <p><span class="start">	mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
+     <p><span class="start">	mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
+                                    <p><span class="start">	int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
+                                </code></pre>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="pills-52" role="tabpanel"
+                                aria-labelledby="pills-52">
+                                <pre><code>
+                                    <p><span class="start">&gt;&gt;</span> nasm -f elf32 factorial.asm -o factorial.o </p>
+                                    <p><span class="start">&gt;&gt;</span> ld -m elf_i386 factorial.o -o factorial </p>
+                                    <p><span class="start">&gt;&gt;</span> ./factorial </p>
+                                    <p><span class="start">&gt;&gt;</span> echo $? </p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade show" id="pills-53" role="tabpanel"
+                                aria-labelledby="pills-53">
+                                 <pre><code>
+                                   <p><span class="start">&gt;&gt;</span> Enter an integer <span class="start">3</span></p>
+                                   <p><span class="start">&gt;&gt;</span> Factorial is <span class="start">6</span></p>
+                                   <p><span class="start">&gt;&gt;</span> 0</p>
+                                </code></pre>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div>
+                    	Now let us study about <a href="file.html">File handling</a>.
+                    </div>
+                    
                 </div>
 
 

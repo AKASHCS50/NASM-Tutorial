@@ -168,7 +168,7 @@
                                  <pre><code>
                                     <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
                                     <p>section .data		</p> 
-                                      <p>file_name <span class="start">db</span> "data.txt", 0x0a		<span class="comment">; Defining file name</span></p>
+                                      <p>file_name <span class="start">db</span> "data.txt", 0		<span class="comment">; Defining file name</span></p>
                                     <p>msg <span class="start">db</span> "This is NASM tutorial.", 0x0a		<span class="comment">; The message</span></p>
                                     <p>len <span class="start">equ</span> $ - msg		<span class="comment">; len equals size of msg</span></p>  
                                      <p>section .bss		</p> 
@@ -189,21 +189,24 @@
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
                                     <p><span class="start">mov eax</span>, 6		<span class="comment">; sys_close system call</p>
                                     <p><span class="start">mov ebx</span>, [fd_out]		<span class="comment">; file descriptor fd_out</p>
-                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
                                       <p><span class="start">mov eax</span>, 5		<span class="comment">; sys_open system call</p>
                                     <p><span class="start">mov ebx</span>, file_name		<span class="comment">; Setting file name to be opened</p>
                                     <p><span class="start">mov ecx</span>, 0		<span class="comment">; for read only access</p>
                                     <p><span class="start">mov edx</span>, 0777		<span class="comment">; Setting permission for read, write and execute by all</p>
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
-                                    <p><span class="start">mov [fd_in]</span>, <span class="start">eax</span>		<span class="comment">; Reading file descriptor of opened file in fd_in</p>
+                                    <p><span class="start">mov </span>[fd_in], <span class="start">eax</span>		<span class="comment">; Reading file descriptor of opened file in fd_in</p>
                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, [fd_in]		<span class="comment">; file descriptor fd_in</p>
                                     <p><span class="start">mov ecx</span>, info		<span class="comment">; Reading in info</p>
-                                    <p><span class="start">mov edx</span>, 26		
+                                    <p><span class="start">mov edx</span>, 26	</p>		
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
                                    <p><span class="start">mov eax</span>, 6		<span class="comment">; sys_close system call</p>
                                     <p><span class="start">mov ebx</span>, [fd_in]		<span class="comment">; file descriptor fd_in</p>
-                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
+                                     <p><span class="start">	mov eax</span>, 4		<span class="comment">; sys_write system call</p>
+      <p><span class="start">	mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
+      <p><span class="start">	mov ecx</span>, info		<span class="comment">; ecx=ans</p>
+      <p><span class="start">	mov edx</span>, 26 </p>
+       <p><span class="start">	int</span> 0x80		<span class="comment">; Perform the system call</p>
                                            <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
      <p><span class="start">mov ebx</span> , 0		<span class="comment">; setting exit status</span></p>
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler to exit program</span></p>
@@ -228,6 +231,11 @@
                             </div>              
                        </div>
                </div>
+               
+               <div class="content-div">
+               	This brings us to the end of tutorial.
+               </div>
+               
             </div>
         </main>
     </div>

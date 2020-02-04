@@ -153,14 +153,14 @@
                             <div class="tab-pane fade show active" id="pills-41" role="tabpanel"
                                 aria-labelledby="pills-41">
                                  <pre><code>
-                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
                                     <p>section .data</p>
                                     <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
-                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt			<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
                                        <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
-                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
-                                    <p>disp_prompt <span class="start">db</span> "The Sum is "		<span class="comment">; disp_prompt="The Sum is "</span></p>
-                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt			<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Sum is "				<span class="comment">; disp_prompt="The Sum is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt			<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
                                     <p>section .bss</p>
                                     <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
                                      <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
@@ -170,27 +170,27 @@
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt	<span class="comment">; edx=len_first_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value</p>
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt	<span class="comment">; edx=len_second_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
                                      <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read second input value</p>
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">mov edx</span>, len_disp_prompt	<span class="comment">; edx=len_disp_prompt</p>                  
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
                                      <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
                                                                         	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
@@ -257,14 +257,14 @@
                             <div class="tab-pane fade show active" id="pills-44" role="tabpanel"
                                 aria-labelledby="pills-44">
                                  <pre><code>
-                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
                                     <p>section .data</p>
                                     <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
-                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt			<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
                                        <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
-                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
-                                    <p>disp_prompt <span class="start">db</span> "The Difference is "		<span class="comment">; disp_prompt="The Difference is "</span></p>
-                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt			<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Difference is "			<span class="comment">; disp_prompt="The Difference is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt			<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
                                     <p>section .bss</p>
                                     <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
                                      <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
@@ -274,27 +274,27 @@
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt	<span class="comment">; edx=len_first_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value</p>
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt	<span class="comment">; edx=len_second_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
                                      <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value</p>
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">mov edx</span>, len_disp_prompt	<span class="comment">; edx=len_disp_prompt</p>                  
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
                                      <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
                                                                         	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
@@ -339,7 +339,7 @@
       	 
                 
                     <div class="content-div">
-                <h4> Multipliaction </h4>
+                <h4> Multiplication </h4>
                    Create a assembly file named <code>operations_prod.asm</code>. <br/>
                 
 					<div class="code-block">
@@ -361,14 +361,14 @@
                             <div class="tab-pane fade show active" id="pills-47" role="tabpanel"
                                 aria-labelledby="pills-47">
                                  <pre><code>
-                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
                                     <p>section .data</p>
                                     <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
-                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt			<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
                                        <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
-                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
-                                    <p>disp_prompt <span class="start">db</span> "The Product is "		<span class="comment">; disp_prompt="The Product is "</span></p>
-                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt			<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Product is "			<span class="comment">; disp_prompt="The Product is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt				<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>	
                                     <p>section .bss</p>
                                     <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
                                      <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
@@ -378,27 +378,27 @@
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt	<span class="comment">; edx=len_first_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value</p>
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt	<span class="comment">; edx=len_second_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
                                      <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value</p>
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">mov edx</span>, len_disp_prompt	<span class="comment">; edx=len_disp_prompt</p>                  
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
                                      <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
                                                                         	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
@@ -445,8 +445,8 @@
                     
                     
                           <div class="content-div">
-                <h4> Multipliaction </h4>
-                   Create a assembly file named <code>operations_prod.asm</code>. <br/>
+                <h4> Division </h4>
+                   Create a assembly file named <code>operations_div.asm</code>. <br/>
                 
 					<div class="code-block">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -467,55 +467,55 @@
                             <div class="tab-pane fade show active" id="pills-410" role="tabpanel"
                                 aria-labelledby="pills-410">
                                  <pre><code>
-                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for global</span></p>
+                                    <p><span class="start">global </span>_start		<span class="comment">; must be declared for linker</span></p>
                                     <p>section .data</p>
                                     <p>first_prompt <span class="start">db</span> "Enter the first number "		<span class="comment">; first_prompt="Enter the first number "</span></p>
-                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt		<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
+                                    <p>len_first_prompt <span class="start">equ</span> $ - first_prompt			<span class="comment">; len_first_prompt equals size of first_prompt</span></p>
                                        <p>second_prompt <span class="start">db</span> "Enter the second number "		<span class="comment">; second_prompt="Enter the second number "</span></p>
-                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt		<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
-                                    <p>disp_prompt <span class="start">db</span> "The Product is "		<span class="comment">; disp_prompt="The Product is "</span></p>
-                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt		<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
+                                    <p>len_second_prompt <span class="start">equ</span> $ - second_prompt			<span class="comment">; len_second_prompt equals size of second_prompt</span></p>
+                                    <p>disp_prompt <span class="start">db</span> "The Division is "			<span class="comment">; disp_prompt="The Division is "</span></p>
+                                    <p>len_disp_prompt <span class="start">equ</span> $ - disp_prompt				<span class="comment">; len_disp_prompt equals size of disp_prompt</span></p>
                                     <p>section .bss</p>
                                     <p>first <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable first</span></p>
                                      <p>second <span class="start">resb</span> 2		<span class="comment">; Unitialized data variable second</span></p>
-                                    <p>prod <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable prod</span></p>
+                                    <p>divs <span class="start">resb</span> 1		<span class="comment">; Unitialized data variable divs</span></p>
                                     <p>section .text</p>
                                     <p>_start:			<span class="comment">; start label</span></p>
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, first_prompt		<span class="comment">; ecx=first_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_first_prompt		<span class="comment">; edx=len_first_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_first_prompt	<span class="comment">; edx=len_first_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>   
                                     <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
                                     <p><span class="start">mov ecx</span>, first		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, second_prompt		<span class="comment">; ecx=second_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_second_prompt		<span class="comment">; edx=len_second_prompt</p>
+                                    <p><span class="start">mov edx</span>, len_second_prompt	<span class="comment">; edx=len_second_prompt</p>
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p>                                            
                                      <p><span class="start">mov eax</span>, 3		<span class="comment">; sys_read system call</p>
                                     <p><span class="start">mov ebx</span>, 2		<span class="comment">; stdin file descriptor</p>
                                     <p><span class="start">mov ecx</span>, second		<span class="comment">; Read first input value in num</p>
-                                    <p><span class="start">mov edx</span>, 2	<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
+                                    <p><span class="start">mov edx</span>, 2		<span class="comment">; 2 bytes (numeric, 1 for sign) of that data value</p> 
                                      <p><span class="start">int</span> 0x80		<span class="comment">; Calling interrupt handler</span></p> 
                                       <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
                                     <p><span class="start">mov ecx</span>, disp_prompt		<span class="comment">; ecx=disp_prompt</p>
-                                    <p><span class="start">mov edx</span>, len_disp_prompt		<span class="comment">; edx=len_disp_prompt</p>                  
+                                    <p><span class="start">mov edx</span>, len_disp_prompt	<span class="comment">; edx=len_disp_prompt</p>                  
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>  
                                      <p><span class="start">mov eax, </span> [first]		<span class="comment">; Moving first value to accumulator<span></p>    
                                                                         	   	<p><span class="start">sub eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>   
                                      <p><span class="start">mov ebx, </span> [second]		<span class="comment">; Moving second value to ebx<span></p>   
                                                                         	   	<p><span class="start">sub ebx</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
-                                   	<p><span class="start">mul ebx		<span class="comment">; Multiplying the numbers in registers<span></p>  
+                                   	<p><span class="start">div ebx			<span class="comment">; Dividing the numbers in registers<span></p>  
                                    	   	<p><span class="start">add eax</span>, '0'		<span class="comment">; Converting to ASCII value<span></p>  
-                                   	   	<p><span class="start">mov</span> [prod], <span class="start">eax</span>		<span class="comment">; Storing the result in prod<span></p>                                                                                            
+                                   	   	<p><span class="start">mov</span> [divs], <span class="start">eax</span>		<span class="comment">; Storing the result in prod<span></p>                                                                                            
                                     <p><span class="start">mov eax</span>, 4		<span class="comment">; sys_write system call</p>
                                     <p><span class="start">mov ebx</span>, 1		<span class="comment">; stdout file descriptor</p>
-                                    <p><span class="start">mov ecx</span>, prod		<span class="comment">; ecx=prod</p>
+                                    <p><span class="start">mov ecx</span>, divs		<span class="comment">; ecx=divs</p>
                                     <p><span class="start">mov edx</span>, 1	                 
                                     <p><span class="start">int</span> 0x80		<span class="comment">; Perform the system call</p>
       <p><span class="start">mov eax</span> , 1		<span class="comment">; sys_exit system call<span></p>
@@ -550,7 +550,7 @@
                     </div> 
                     
                 
-                    This completes our Input Output assembly program. In next example we will perform some basic <a href="operations.html">Arithmetic Opeartions</a>. 
+                    This completes our Basic assembly program. In next example we will find <a href="factorial.html">Factorial</a> of a number. 
                 </div>
 
 

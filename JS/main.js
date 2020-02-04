@@ -1,9 +1,6 @@
 $(document).ready(function() {
     $("#nav-icon").click(function() {
         $(this).toggleClass('open');
-	 $("#sticky-footer").css({
-    'width': ($("#sidebar").width() + $("#sticky-footer").width() + 'px')
-  });
     });
 });
 
@@ -15,6 +12,3 @@ if($(window).width() >= 760)
 }});
 
 
-$(document).ready(function() {
-
-});
